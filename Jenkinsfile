@@ -11,7 +11,8 @@ pipeline {
 
         stage('Run Unit Tests') {
             steps {
-                sh 'python -m unittest discover -v'
+                sh 'pip install unittest-xml-reporting -q'
+                sh 'python -m xmlrunner discover -v --output-file test-results.xml'
             }
             post {
                 always {
